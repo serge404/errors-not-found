@@ -22,3 +22,25 @@ body {
   background: var(--background);
   font-family: "Courier New", Courier, monospace; /* Applying typewriter font */
 }
+
+.typing-effect {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-weight: bold;
+  text-align: center; /* Center text */
+  width: fit-content;
+  margin: 0 auto; /* Center horizontally */
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #00ff00;
+  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 80%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00ff00; }
+}
