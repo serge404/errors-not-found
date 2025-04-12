@@ -10,7 +10,7 @@ const builder = imageUrlBuilder(client);
 
 const components = {
   types: {
-    image: ({ value }) => {
+    image: ({ value }: { value: SanityImageSource & { alt?: string } }) => {
       const imageUrl = builder.image(value).width(800).url();
       return (
         <Image
@@ -20,7 +20,7 @@ const components = {
         />
       );
     },
-    embed: ({ value }) => {
+    embed: ({ value }: { value: { url: string } }) => {
       const { url } = value;
 
       // YouTube
