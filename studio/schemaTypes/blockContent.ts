@@ -63,5 +63,20 @@ export default defineType({
       type: 'image',
       options: {hotspot: true},
     }),
+    defineArrayMember({
+      name: 'embed',
+      type: 'object',
+      title: 'Embed',
+      fields: [
+        {
+          name: 'url',
+          type: 'url',
+          title: 'URL',
+          validation: (Rule) => Rule.uri({
+            scheme: ['http', 'https'],
+          }),
+        },
+      ],
+    })
   ],
 })
