@@ -5,6 +5,8 @@ import { type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+
 
 
 import { client } from "@/sanity/client";
@@ -28,7 +30,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const result = await client.fetch<SanityDocument[]>(POSTS_QUERY);
+      const result = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
       setPosts(result);
     };
 
@@ -62,7 +64,7 @@ export default function IndexPage() {
             <li key={post._id} className="fade-in">
               <Link href={`/${post.slug.current}`}>
                 {imageUrl && (
-                  <img
+                  <Image
                     src={imageUrl}
                     alt={post.title}
                     className="rounded-xl mb-2 aspect-video object-cover"

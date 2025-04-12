@@ -3,6 +3,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import Link from "next/link";
+import Image from "next/image";
+
 
 const builder = imageUrlBuilder(client);
 
@@ -11,7 +13,7 @@ const components = {
     image: ({ value }) => {
       const imageUrl = builder.image(value).width(800).url();
       return (
-        <img
+        <Image
           src={imageUrl}
           alt={value.alt || 'Post image'}
           className="rounded-xl my-6"
@@ -105,7 +107,7 @@ export default async function PostPage({
         ← Back to posts
       </Link>
       {postImageUrl && (
-        <img
+        <Image
           src={postImageUrl}
           alt={post.title}
           className="aspect-video rounded-xl"
