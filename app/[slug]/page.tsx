@@ -99,6 +99,33 @@ const components: PortableTextReactComponents = {
       );
     },
   },
+
+  marks: {
+    // You can customize marks (like bold, italics, etc.)
+    strong: ({ children }: { children: React.ReactNode }) => (
+      <strong className="font-bold">{children}</strong>
+    ),
+    em: ({ children }: { children: React.ReactNode }) => (
+      <em className="italic">{children}</em>
+    ),
+    // Add other marks like underline, strikethrough, etc. as needed
+  },
+
+  list: {
+    // Customize how lists appear
+    bullet: ({ children }) => <ul className="list-disc pl-6 my-4">{children}</ul>,
+
+    number: ({ children }) => <ol className="list-decimal pl-6 my-4">{children}</ol>
+  },
+
+  listItem: {
+    // Customize how list items appear
+    bullet: ({ children })=> <li className="my-2">{children}</li>,
+    number: ({ children })=> <li className="my-2">{children}</li>
+  },
+
+  hardBreak: () => <br />,
+
 };
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
