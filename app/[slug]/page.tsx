@@ -108,6 +108,11 @@ const components: PortableTextReactComponents = {
     em: ({ children }: { children: React.ReactNode }) => (
       <em className="italic">{children}</em>
     ),
+    link: ({ value, children }) => (
+      <a href={value?.href}>
+        {children}
+      </a>
+    ),
     // Add other marks like underline, strikethrough, etc. as needed
   },
 
