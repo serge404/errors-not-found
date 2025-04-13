@@ -47,9 +47,9 @@ body {
 
 a {
   color: #5af63b; /* Green color */
-  text-decoration: underline; /* Underline links */
 }
 
 a:hover {
   color: #278914; /* Darker green on hover */
+  text-decoration: underline; /* Underline links */
 }
