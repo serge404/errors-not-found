@@ -9,14 +9,14 @@ import Image from "next/image";
 
 const builder = imageUrlBuilder(client);
 
-const components : PortableTextReactComponents = {
+const components: PortableTextReactComponents = {
   types: {
     image: ({ value }: { value: SanityImageSource & { alt?: string } }) => {
       const imageUrl = builder.image(value).width(800).url();
       return (
         <Image
           src={imageUrl}
-          alt={value.alt || 'Post image'}
+          alt={value.alt || "Post image"}
           className="rounded-xl my-6"
           width={800}
           height={400}
@@ -82,25 +82,23 @@ const components : PortableTextReactComponents = {
       );
     },
   },
+
+  // Make sure each block component matches the PortableTextBlockComponent signature
   block: {
-    normal: ({ children }: { children: React.ReactNode }) => {
-      return <p className="my-4">{children}</p>; // Ensures paragraphs have spacing
-    },
-    // Add additional blocks as needed (like headers, quotes, etc.)
-    h1: ({ children }: { children: React.ReactNode }) => {
-      return <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>;
-    },
-    h2: ({ children }: { children: React.ReactNode }) => {
-      return <h2 className="text-2xl font-semibold mt-6 mb-3">{children}</h2>;
-    },
-    blockquote: ({ children }: { children: React.ReactNode }) => {
+    normal: ({ children }) => <p className="my-4">{children}</p>,
+
+    h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
+
+    h2: ({ children }) => <h2 className="text-2xl font-semibold mt-6 mb-3">{children}</h2>,
+
+    blockquote: ({ children })=> {
       return (
         <blockquote className="italic border-l-4 border-gray-500 pl-4 my-4">
           {children}
         </blockquote>
       );
     },
-  }
+  },
 };
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
