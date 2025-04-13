@@ -31,6 +31,7 @@ export default function IndexPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       const result = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+      console.log("Sanity posts:", result);
       setPosts(result);
     };
 
