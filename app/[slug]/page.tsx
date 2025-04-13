@@ -17,6 +17,8 @@ const components = {
           src={imageUrl}
           alt={value.alt || 'Post image'}
           className="rounded-xl my-6"
+          width={800}
+          height={400}
         />
       );
     },
@@ -79,6 +81,25 @@ const components = {
       );
     },
   },
+  block: {
+    normal: ({ children }: { children: React.ReactNode }) => {
+      return <p className="my-4">{children}</p>; // Ensures paragraphs have spacing
+    },
+    // Add additional blocks as needed (like headers, quotes, etc.)
+    h1: ({ children }: { children: React.ReactNode }) => {
+      return <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>;
+    },
+    h2: ({ children }: { children: React.ReactNode }) => {
+      return <h2 className="text-2xl font-semibold mt-6 mb-3">{children}</h2>;
+    },
+    blockquote: ({ children }: { children: React.ReactNode }) => {
+      return (
+        <blockquote className="italic border-l-4 border-gray-500 pl-4 my-4">
+          {children}
+        </blockquote>
+      );
+    },
+  }
 };
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
@@ -111,8 +132,8 @@ export default async function PostPage({
           src={postImageUrl}
           alt={post.title}
           className="aspect-video rounded-xl"
-          width="550"
-          height="310"
+          width={550}
+          height={310}
         />
       )}
       <h1 className="text-4xl font-bold mb-8">{post.title}</h1>

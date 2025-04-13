@@ -68,6 +68,8 @@ export default function IndexPage() {
                     src={imageUrl}
                     alt={post.title}
                     className="rounded-xl mb-2 aspect-video object-cover"
+                    width={800}
+                    height={400}
                   />
                 )}
                 <h2 className="text-xl font-semibold">{post.title}</h2>
