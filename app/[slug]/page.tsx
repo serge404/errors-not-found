@@ -1,4 +1,5 @@
 import { PortableText, type SanityDocument } from "next-sanity";
+import { PortableTextReactComponents } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
@@ -8,7 +9,7 @@ import Image from "next/image";
 
 const builder = imageUrlBuilder(client);
 
-const components = {
+const components : PortableTextReactComponents = {
   types: {
     image: ({ value }: { value: SanityImageSource & { alt?: string } }) => {
       const imageUrl = builder.image(value).width(800).url();
