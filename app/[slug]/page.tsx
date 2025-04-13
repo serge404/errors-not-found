@@ -126,6 +126,13 @@ const components: PortableTextReactComponents = {
 
   hardBreak: () => <br />,
 
+   // Add placeholders for the missing properties:
+   unknownMark: () => null,
+   unknownType: () => null,
+   unknownBlockStyle: () => null,
+   unknownList: () => null,
+   unknownListItem: () => null,
+
 };
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
