@@ -15,7 +15,8 @@
     "next-sanity": "^9.8.60",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-is": "^19.0.0"
+    "react-is": "^19.0.0",
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

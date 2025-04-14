@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
+import ThreeBackground from "@/components/ThreeBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,12 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Analytics />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Make sure ThreeBackground is at the root level */}
+        <ThreeBackground />
+
+        <div className="relative z-10">
+          {children}
+          <Analytics />
+        </div>
       </body>
     </html>
   );
 }
+

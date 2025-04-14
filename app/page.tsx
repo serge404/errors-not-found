@@ -47,6 +47,14 @@ function PostItem({ post, isVisible }: { post: SanityDocument, isVisible: boolea
   // Check if the title exists and isVisible is true, else return an empty string
   const typedTitle = useTypewriter(isVisible ? post.title || "" : "", 60); // Slower typing
 
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const typedDate = useTypewriter(isVisible ? formattedDate : "", 100); // adjust speed as needed
+
   const imageUrl = post.mainImage
     ? urlFor(post.mainImage)?.width(800).url()
     : null;
@@ -64,7 +72,7 @@ function PostItem({ post, isVisible }: { post: SanityDocument, isVisible: boolea
             />
           )}
           <h2 className="text-xl font-semibold">{typedTitle}</h2>
-          <p>{new Date(post.publishedAt).toLocaleDateString()}</p>
+          <p>{typedDate}</p>
         </Link>
       </li>
     );
@@ -98,7 +106,9 @@ export default function IndexPage() {
         <h1 className="typing-effect text-3xl md:text-5xl font-bold mb-8">
           ERRORS NOT FOUND
         </h1>
-  
+
+        <br></br>
+
         <ul className="flex flex-col gap-y-6">
           {posts.slice(0, visibleCount).map((post, i) => 
             <PostItem key={post._id} post={post} isVisible={visibleCount > i} />

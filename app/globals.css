@@ -1,20 +1,16 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: "Courier New", Courier, monospace; /* Using Courier New as a typewriter font */
-}
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
+  --background: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* In your globals.css */
+html, body {
+  height: 100%;        /* Ensure both body and html take up the full height */
+  margin: 0;           /* Remove any default margin */
+  overflow-x: hidden;  /* Disable horizontal scroll */
+  overflow-y: auto;    /* Enable vertical scrolling */
 }
 
 body {
@@ -42,14 +38,40 @@ body {
 
 @keyframes blink-caret {
   from, to { border-color: transparent; }
-  50% { border-color: #00ff00; }
+  50% { border-color: #5af63b; }
 }
 
 a {
-  color: #5af63b; /* Green color */
+  color: #7d7d7d; /* Green color */
 }
 
 a:hover {
   color: #278914; /* Darker green on hover */
   text-decoration: underline; /* Underline links */
+}
+
+div#three-background {
+  position: fixed;  /* Make sure it's fixed to the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;     /* Full width of the viewport */
+  height: 100vh;    /* Full height of the viewport */
+  z-index: -1;      /* Ensure it stays behind the content */
+  filter: blur(8px);
+}
+
+/* Add this to your CSS */
+div#three-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Adjust opacity as needed */
+  z-index: -1;
+}
+
+h1, h2, p {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Dark shadow to help text pop */
 }
