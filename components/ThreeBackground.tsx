@@ -20,9 +20,41 @@ export default function ThreeBackground() {
     containerRef.current.appendChild(renderer.domElement);
 
     const geometry = new THREE.SphereGeometry(0.1, 16, 16);
-    const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });
-    material.opacity = 0.2;
-    const count = 500;
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+      },
+      vertexShader: `
+        uniform float time;
+        varying vec3 vPosition;
+
+        void main() {
+          vPosition = position;
+
+          vec3 glitchPos = position;
+
+          // Add wiggly movement over time
+          glitchPos.x += sin(position.y * 4.0 + time * 0.8) * 0.5;
+          glitchPos.y += cos(position.x * 5.0 + time * 0.6) * 0.5;
+          glitchPos.z += sin(position.z * 3.0 + time * 0.7) * 0.5;
+
+          vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(glitchPos, 1.0);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform float time;
+        varying vec3 vPosition;
+
+        void main() {
+          vec3 color = vec3(0.26, 0.67, 0.53); // Green
+          gl_FragColor = vec4(color, 1.0); // Set alpha to 0.2 for transparency
+        }
+      `,
+      transparent: true,
+    });
+
+    const count = 125;
     const instancedMesh = new THREE.InstancedMesh(geometry, material, count);
 
     for (let i = 0; i < count; i++) {
@@ -36,9 +68,13 @@ export default function ThreeBackground() {
 
     scene.add(instancedMesh);
 
+    const startTime = Date.now();
     function animate() {
+      const elapsed = (Date.now() - startTime) / 1000;
+      material.uniforms.time.value = elapsed;
+
       requestAnimationFrame(animate);
-      instancedMesh.rotation.y += 0.01;
+      instancedMesh.rotation.y += 0.002;
       renderer.render(scene, camera);
     }
 
@@ -52,7 +88,7 @@ export default function ThreeBackground() {
 
     return () => {
       renderer.dispose();
-      window.removeEventListener("resize", () => {});
+      window.removeEventListener("resize", () => { });
     };
   }, []);
 
