@@ -11,7 +11,8 @@ export default function ThreeBackground() {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0x4d4d4d);
+    scene.environment = null; // Disables background environment lighting
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -26,7 +27,7 @@ export default function ThreeBackground() {
 
     const geometry = new THREE.SphereGeometry(0.2, 16, 16);
 
-    const count = 100;
+    const count = 50;
 
     // Create and assign per-instance offsets
     const offsets = new Float32Array(count * 3);
@@ -70,7 +71,7 @@ export default function ThreeBackground() {
           vec3 lightDir = normalize(vec3(0.5, 1.0, 0.75));
           float brightness = 1.0 - length(vPosition) * 0.2;
           vec3 color = vec3(0.4, 1.0, 0.85) * brightness; // brighter teal
-          
+
           gl_FragColor = vec4(color, 0.6); // stronger opacity
         }
       `,

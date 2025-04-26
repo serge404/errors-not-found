@@ -2,7 +2,7 @@
 
 :root {
   --foreground: #ffffff;
-  --background: #000000;
+  --background: #4d4d4d;
 }
 
 /* In your globals.css */
@@ -17,7 +17,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Courier New", Courier, monospace; /* Applying typewriter font */
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 
 .typing-effect {
@@ -42,11 +42,20 @@ body {
   50% { border-color: #5af63b; }
 }
 
-a {
+blockquote a {
   color: #5af63b; /* Green color */
 }
 
-a:hover {
+blockquote a:hover {
+  color: #278914; /* Darker green on hover */
+  text-decoration: underline; /* Underline links */
+}
+
+p a {
+  color: #5af63b; /* Green color */
+}
+
+p a:hover {
   color: #278914; /* Darker green on hover */
   text-decoration: underline; /* Underline links */
 }
