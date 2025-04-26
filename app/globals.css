@@ -51,6 +51,9 @@ blockquote a:hover {
   text-decoration: underline; /* Underline links */
 }
 
+a:hover {
+  text-decoration: underline; /* Underline links */
+}
 p a {
   color: #5af63b; /* Green color */
 }
