@@ -61,7 +61,7 @@ export default function MusicPlayer() {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-black text-green-400 text-sm font-mono px-4 py-2 flex items-center justify-between border-t border-green-600">
       <div className="truncate">
-        ♪ now playing: {tracks[currentTrack].title}
+        ♪ Now Playing: {tracks[currentTrack].title}
       </div>
       <div className="flex items-center space-x-4">
         <button onClick={playPrev} title="Previous Track">
