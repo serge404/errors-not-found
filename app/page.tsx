@@ -7,6 +7,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/client";
+import { useTypewriter } from '@/hooks/use-typewriter';
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -21,27 +22,6 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-function useTypewriter(text: string, speed = 60) {
-  const [typed, setTyped] = useState("");
-
-  useEffect(() => {
-    let i = 0;
-    if (text.length === 0) return;  // Handle case where there's no text to type
-
-    // Start typing immediately
-    setTyped(text[0]);
-
-    const interval = setInterval(() => {
-      i++;
-      setTyped((prev) => prev + text[i]);
-      if (i >= text.length - 1) clearInterval(interval); // Stop after the last character
-    }, speed);
-
-    return () => clearInterval(interval);
-  }, [text, speed]);
-
-  return typed;
-}
 
 function PostItem({ post, isVisible }: { post: SanityDocument, isVisible: boolean }) {
   // Check if the title exists and isVisible is true, else return an empty string

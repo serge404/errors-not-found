@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Pause, Play, SkipBack, SkipForward } from 'lucide-react'
+import { useTypewriter } from '@/hooks/use-typewriter';
+
 
 const tracks = [
   {
@@ -58,27 +60,31 @@ export default function MusicPlayer() {
     }
   }, [currentTrack])
 
+  const currentSong = tracks[currentTrack];
+  const typedText = useTypewriter(`♪ Now Playing: ${currentSong.title}`, 60);
+
+
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-black text-green-400 text-sm font-mono px-4 py-2 flex items-center justify-between border-t border-green-600">
-      <div className="truncate">
-        ♪ Now Playing: {tracks[currentTrack].title}
+      <div className="fixed bottom-0 left-0 w-full bg-black text-green-400 text-sm font-mono px-4 py-2 flex items-center justify-between border-t border-green-600">
+          <div className="overflow-x-auto whitespace-nowrap scrollbar-none max-w-[70vw]">
+              {typedText}
+          </div>
+          <div className="flex items-center space-x-4">
+              <button onClick={playPrev} title="Previous Track">
+                  <SkipBack size={16} />
+              </button>
+              <button onClick={togglePlay} title={isPlaying ? 'Pause' : 'Play'}>
+                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+              </button>
+              <button onClick={playNext} title="Next Track">
+                  <SkipForward size={16} />
+              </button>
+          </div>
+          <audio
+              ref={audioRef}
+              src={currentSong.src}
+              onEnded={playNext}
+          />
       </div>
-      <div className="flex items-center space-x-4">
-        <button onClick={playPrev} title="Previous Track">
-          <SkipBack size={16} />
-        </button>
-        <button onClick={togglePlay} title={isPlaying ? 'Pause' : 'Play'}>
-          {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-        </button>
-        <button onClick={playNext} title="Next Track">
-          <SkipForward size={16} />
-        </button>
-      </div>
-      <audio
-        ref={audioRef}
-        src={tracks[currentTrack].src}
-        onEnded={playNext}
-      />
-    </div>
   )
 }
