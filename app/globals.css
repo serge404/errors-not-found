@@ -95,28 +95,6 @@ p a:hover {
   text-decoration: underline; /* Underline links */
 }
 
-div#three-background {
-  position: fixed;  /* Make sure it's fixed to the viewport */
-  top: 0;
-  left: 0;
-  width: 100vw;     /* Full width of the viewport */
-  height: 100vh;    /* Full height of the viewport */
-  z-index: -1;      /* Ensure it stays behind the content */
-  filter: blur(8px);
-}
-
-/* Add this to your CSS */
-div#three-background::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4); /* Adjust opacity as needed */
-  z-index: -1;
-}
-
 h1, h2, p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Dark shadow to help text pop */
 }
