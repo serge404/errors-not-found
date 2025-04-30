@@ -7,7 +7,7 @@ import { useTypewriter } from '@/hooks/use-typewriter';
 
 const tracks = [
   {
-    title: 'Osamason – Frontin',
+    title: 'OsamaSon – Frontin',
     src: '/tracks/Frontin.mp3',
   },
   {
@@ -65,7 +65,7 @@ export default function MusicPlayer() {
 
 
   return (
-      <div className="fixed bottom-0 left-0 w-full bg-black text-red-400 text-sm font-mono px-4 py-2 flex items-center justify-between border-t border-red-600">
+      <div className="fixed bottom-0 left-0 w-full bg-black text-green-400 text-sm font-[Courier_New] font-mono font-bold px-4 py-2 flex items-center justify-between border-t border-green-600">
           <div className="overflow-x-auto whitespace-nowrap scrollbar-none max-w-[70vw]">
               {typedText}
           </div>
