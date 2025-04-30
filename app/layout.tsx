@@ -27,9 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Make sure ThreeBackground is at the root level */}
-        <ThreeBackground />
-
         <div className="relative z-10">
           {children}
           <Analytics />
