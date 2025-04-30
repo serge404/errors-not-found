@@ -11,6 +11,7 @@
   "dependencies": {
     "@sanity/vision": "^3.83.0",
     "@vercel/analytics": "^1.5.0",
+    "lucide-react": "^0.503.0",
     "next": "15.2.0",
     "next-sanity": "^9.8.60",
     "react": "^19.0.0",
